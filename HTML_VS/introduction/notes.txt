@@ -1,0 +1,20 @@
+HTML-Hyper text markup language.
+used to create web pages.
+* not case sensitive() (<htlm>=<HTML>=<HtML).     
+*current version is HTML 5.2
+
+<!DOCTYPE html>            --> specifies that this is a HTML5 document
+ <html>                     --> root tag
+    <head>                  --> contains META information about tha html page
+       <title></title>      -->name for the page (displayes on the top of the browser(bookmark))
+    </head>
+    <Body>                  --> visual content only
+      sadik pasha
+    </body>
+ </html>
+
+ element --> <opening tag>+content+</closing tag>  is called element.
+ tag      --> <inside single> i.e <table>   or </table>
+
+ comment    -->     <!--    comment info    -->     both single & multiLine
+ run         --> save file with .html   (double click/right click ,open online/paste file path in wroser)

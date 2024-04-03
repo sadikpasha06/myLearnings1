@@ -1,0 +1,32 @@
+<table>     -->width(colum),height(row),border (attributes)
+              border=0(with out border)
+              border=2 (example) 
+<caption>   --> name for the table(text)
+<tr> --> specifies the rows
+<th>   --> table head(used insted of <td> to make a heading of the cell (default bold,center) ) 
+<td>    --> table data(can insert text,image,video,list,table)
+
+<thead>   --> used to group the table 1 st row as the header 
+<tbody>   -->table content   
+<tfoot>    --> last row of the table like Total( used to differenciate with tbody)
+          *** allows colspan rowspan within any of these only not into  one-other.
+
+*table heading 
+we can use heading <th> in rows /coloms.
+  ex: <table> <tr> <th> one</th>      --> row heading.  
+             <th> two</th> </tr>
+       </table> 
+
+  ex: <table><tr><th> heading1</th>  <td>data</td> </tr>     -->colom heading
+             <tr><th> heading2</th>  <td>data</td> </tr>
+      </table>  
+
+**merging cells(span)
+  attribute:colspan=2 (2 coloms merged)      used in <th>/<td> tags. 
+            rowspan=3 (3 rows merged)       used in <th>/<td> tags.  
+                     **specify  in  cell(th,td) u want to span 
+
+            
+
+     
+              

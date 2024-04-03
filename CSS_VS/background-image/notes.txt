@@ -1,0 +1,20 @@
+  background-image --> this CSS property can be used on any html tag.
+ inline CSS: ex <p style="background-image: url('img_girl.jpg');">
+ internal CSS: ex  <style>       (in head tag)
+                      p {
+                        background-image: url('img_girl.jpg');
+                        }
+                    </style> 
+
+       other related properties. 
+            <style>
+            body {
+     background-image: url('img_girl.jpg');   --> image url
+      background-repeat: no-repeat;           --> default repets tii reaching the element area.
+      background-attachment: fixed;           --> to cover entire element surely
+     background-size: 100% 100%;              -->to stretch as based on the element.
+                    : cover
+    
+                       }
+            </style>
+        

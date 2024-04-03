@@ -1,0 +1,62 @@
+GitHub --> web based git repository hosting service.
+repository -->storage place for the repository. it can be   
+              folreds,files, documents,images,audios,videos. 
+            * seperate repository for the each project.
+
+git 1) only repository
+gitHub  1)  repository 2) project
+
+1) create your github account on github official website.
+2) username & passwors ,mail save  in your nates.
+3) create a project 
+4) create a repository --  repository name, public,private,description
+                           ReadMe.md  --add this file ( project, setup details ) 
+                            can clone the  repository code to local local folred.
+                            can dowload the repository as a .zip file.
+                            can push branches to the remote repository.
+
+by default you are on the master baranch--  can add new files to branch 
+                                        -- commit changes (saving)
+                                        
+** connecting local and remore repositeries.
+ git push --set-upstream REMOTE_REPOSITORY_URL LOCAL_BRANCH_NAME(current branch u want to push).
+ EX.
+    git push --set-upstream https://github.com/sadikpasha06/sadik.git branch1 
+
+     --> this step(--set-upstream) needs only one.
+
+     --> next time  you can  simply use origin.
+  the above is used to push the local  repositeries to remote. 
+
+  git push origin --delete BRANCH_NAME  --> delets remote branch. 
+
+
+  ** having project in remote. want to wark on local.(getting project)  
+   1) create  new folder in the local statem.
+   2) open the foledr in the command promt(type cmd on the folder path or go terminal cd desktop,cd/desktop/cd foldername) 
+   3) git clone REMOTE_REPOSITORY_URL --> copy it from github.
+        the project is downloads  in your local foledr.
+
+   4) open the local foledr with IDE(vc code,eclips,sts,intellij Idea).
+   5) make changes to the  project as required. 
+   6) to do any task related to git/github  must the folder opened in the cmd/terminal. otherwise can not performs.
+
+
+** fork ** 
+ copying the repository. (mostly used when u not allowed to push/pull the repository(restricted))
+ so you  can  fork the repository to your github. and can work on it.
+ 
+
+ **pull(merge)  request 
+ u can request for the pull(merge) to the main branch. only the authorised can approve(merge).
+
+
+
+
+
+
+
+
+                                        
+                                     
+

@@ -1,0 +1,37 @@
+<form>     -->collects data from the user.
+            
+**form tags 
+<form>      -->  
+    <lable>   -->  for="id_of input" :use this in id of input.       
+    <select>   -->  for dropdown list  
+          <option> value1 </option> 
+
+         
+   <textarea> -->  rows,cols="10"  for text area 
+   <button>   -->  type="button"  onlick="alert('Hello World!')"  
+
+   <input>   --> type=checkbox,radio,password,text,date,time,email,url,file,image,range,number,submit  
+                 **must heve the name attribute to send data to server.
+   <input type="button">       -->
+   <input type="checkbox">     --> use lable for naming the checkbox
+   <input type="radio">        --> able to select only 1 option.use lable for naming. 
+                                 **SHOULD  use name attribute for all radio input same(set of radio).
+                               
+   <input type="text">         -->
+
+   <input type="password">      -->masked with dots./*data  (eye icon)
+   <input type="date">          --> min,max attributes(in YYYY-MM-DD) only
+   <input type="time">          --> 
+   <input type="email">         ---> gives  popup msg if not email formate at submit.
+   <input type="url">           -->
+   <input type="file">          -->  to upload file
+   <input type="image">         -->  image as a button
+
+   <input type="range">         -->
+   <input type="number">         --> min,max (gives pop up at submitting the form if not in between min-max)
+   <input type="submit">          -->  submits the form to the server.separate submit button for each form.
+  
+
+      
+
+

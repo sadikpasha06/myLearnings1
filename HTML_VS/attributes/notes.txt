@@ -1,0 +1,55 @@
+      LIST of attributes.
+* attributes name in lowercase  (supports both but)  
+* attrubute values in quotation " "/' '  ex:  src="car.jpj"  (supports without also)   
+
+
+style       --can on all elements.ex: style="name:value"(style="background-color:powderblue;")
+              1)color:blue;(use CSS color property) 
+              2)font-family:verdana;
+              3)font-size:300%;
+              4)text-align:center;
+              5)border:2px solid Tomato;
+              6)padding: 10px;  (specifies the space between text and border)
+              7)margin:30px;  (specifies the margin (space) outside the border)
+
+type         <ol><ul>
+src,alt,width,height   <img>  
+href   <a>    --link 
+ title    --> when u move cursor on the p tag content is shows tool tip(value of title attribute) 
+    ex: <p  title="give tool tip"> content </p>
+
+
+*class      --> can be used on any html element.mostly used for adding CSS styles and javascript functionality.
+            --> internal/ external CSS.
+            --> class name is CASE-SENSITIVE. 
+            --> a single element can have multiple classes. just give space between class names.
+            --> class defination. 
+              syntax: .class_name {
+                  CSS-property:value;
+                  CSS-property:value
+               }
+
+**id         -->  can be used on any html element.mostly used for adding CSS styles and javascript functionality.
+             --> unique id for the element.single id for singke element only.
+              --> should start with # symbol.
+              -->CASE-SENSITIVE. and should not start with numbers(0,1..9).no white space allowed.
+              id declaration:
+                 syntax:    #ID_NAME {  CSS-property:value;
+                                        CSS-property:value;
+                                     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

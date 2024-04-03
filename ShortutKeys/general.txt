@@ -1,0 +1,9 @@
+f2     --  rename file/folder -->select the file/folder then press f2.
+window+d    --> minimises all windows
+window +prt src  --> take screenshort.
+
+Alt+tab       --> switch between previous and current  windows.
+
+windo+shift+S   --> customized screen short.
+
+html: ctrl+u --> to get the source code of the web page.
