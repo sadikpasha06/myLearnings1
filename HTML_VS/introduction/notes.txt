@@ -5,7 +5,7 @@ used to create web pages.
 
 <!DOCTYPE html>            --> specifies that this is a HTML5 document
  <html>                     --> root tag
-    <head>                  --> contains META information about tha html page
+    <head>                  --> *it can be ignored( works without head tag)contains META information about tha html page
        <title></title>      -->name for the page (displayes on the top of the browser(bookmark))
     </head>
     <Body>                  --> visual content only
@@ -17,4 +17,78 @@ used to create web pages.
  tag      --> <inside single> i.e <table>   or </table>
 
  comment    -->     <!--    comment info    -->     both single & multiLine
- run         --> save file with .html   (double click/right click ,open online/paste file path in wroser)
+ run         --> save file with .html   (double click/right click ,open online/paste file path in broser)
+
+   Block & inline Elements 
+
+   Block Elements --> <div> <p> <pre> <h1>...<h6> <ol><ul><li><dt>  <table>  <form> <header>  <footer>
+       ** block lements takes a line break atbegining and at ending.
+       ** takes full width available.(stretches left to nright as far as it can -- makes the scrollbar to adjust the width)
+       ** bolck_level elements can be define  inside  other block level element  only not in inline- elements.
+       
+    Inline-elements 
+       --> <span> {<b><i><u><sub><sup><s><mark><small>} <a> <img> <input>  <label> <select>
+       ** inline elements does not take line break.
+       ** takes the space only as required.
+       ** can be define inside other block level elements.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       -----HTML COLORS-------
+   ** used to specify  color for  text/background/ border  
+   ** standard 140 colors /names 
+                 use style attribute  to add color.
+                  text color   -- <h1>,<p>,<pre>,<li>,<th>,<td>,...ect    --><p style="color:red"> tesxt in red</P>
+                  background-color--> <body>,<table>,<list>all text tags  --> 
+                  border:px color--> any text tags and all..... 
+
+   blue-->blueviolet,darkblue,lightblue,mediumblue
+   green --> darkgreen
+   red-->darkred,orangered              
+   green--> lightgreen
+   orange-->orangered,tomato,colal,lightcolal
+   grey--> lightgrey
+   black
+   indigo,darkviolet,midnightblue,navy
+   yello
+   crimson,cyan
+   darkmagenta
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

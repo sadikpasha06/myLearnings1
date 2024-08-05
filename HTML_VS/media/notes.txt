@@ -2,6 +2,6 @@
            1) src   -- path(location of the file in local system)/ URL if from server 
            2) alt   -- alternative text to be displayed if page not found
            3)height  -- height of image  (0-)   if used in style attribute the add px (100px)
-           4)width    -- width of image(0-)
+           4)width    -- width of image(0-)    in 100-1000 in digits.
  
  

@@ -1,7 +1,7 @@
 *list 
-<list> 
-<ol>       --type=1,a,A,i,I
-<ul>       --type=disc/circle/square/none(use CSS list-style-type:  property    )
+<list>      
+<ol>       --type=1,a,A,i,I      --> default is  "1"
+<ul>       --type=disc/circle/square/none   --> default is disk(filled)
 <li>  
 <dl> description list --type=
 <dt>  description  term     

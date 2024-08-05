@@ -1,9 +1,20 @@
       LIST of attributes.
+** attribute name also not case sensitive  src=SRC=Src; (but class attribute is case sensitive )
 * attributes name in lowercase  (supports both but)  
-* attrubute values in quotation " "/' '  ex:  src="car.jpj"  (supports without also)   
+* attrubute values in quotation even through  numbers  " "/' '  ex:  src="car.jpj"  (supports without also)   
 
+
+  Global &Event attributes.
+       Global Attributes: attributes that can be used on all tml elements 
+                    ex: style=""     --> to add inline CSS styles 
+                        title=""     --> to add pop up on mouse over 
+                        clas="css class"  --> used to add class based css 
+                        id="unique"       --> unique id for the element
+
+     Event attributes: java script based.(need to check )
 
 style       --can on all elements.ex: style="name:value"(style="background-color:powderblue;")
+              ****must use the semicolon(;) at the end of CSS property.
               1)color:blue;(use CSS color property) 
               2)font-family:verdana;
               3)font-size:300%;
@@ -14,29 +25,54 @@ style       --can on all elements.ex: style="name:value"(style="background-color
 
 type         <ol><ul>
 src,alt,width,height   <img>  
-href   <a>    --link 
- title    --> when u move cursor on the p tag content is shows tool tip(value of title attribute) 
-    ex: <p  title="give tool tip"> content </p>
+href,target,title  <a>    --link 
+border,height,width,align--->   <table>
+rel, type, src,     --> <link>      
+charset,lan,name,content---> <meta>
+type,value,name,id,    --> <input>  --> value(default value for the input), name(to match in case of radio), id(javascript functionality)
+
+
+
+***title    --> when u move cursor on the p tag content is shows tool tip(value of title attribute) 
+               ex: <p  title="give tool tip"> content </p>
+               ** can be used on any element like  <a>,<h1>,<p>...ect.
 
 
 *class      --> can be used on any html element.mostly used for adding CSS styles and javascript functionality.
             --> internal/ external CSS.
-            --> class name is CASE-SENSITIVE. 
+            --> *class name is CASE-SENSITIVE. 
+             --> class defination. 
+                 syntax: .class_name {
+                                      CSS-property:value;
+                                      CSS-property:value
+                                      }
             --> a single element can have multiple classes. just give space between class names.
-            --> class defination. 
-              syntax: .class_name {
-                  CSS-property:value;
-                  CSS-property:value
-               }
+                ex: .city{}
+                    .town{}
+                  <h1   class="city town"> using both city & town classes in single element</h2>
+
+           
+
+      
+
 
 **id         -->  can be used on any html element.mostly used for adding CSS styles and javascript functionality.
-             --> unique id for the element.single id for singke element only.
+             --> unique id for each element and each occurance.single id for single element only.
+             --> uniqueness and scope  is document level. 
               --> should start with # symbol.
               -->CASE-SENSITIVE. and should not start with numbers(0,1..9).no white space allowed.
               id declaration:
                  syntax:    #ID_NAME {  CSS-property:value;
                                         CSS-property:value;
-                                     }
+                                     } 
+                 usage: #id1{ color:red;}
+                        #id2{ background-color:red;}
+
+                          
+                         <h1 id="id1" > heading 1</h1>
+                         <p id="id2"> paragraph</p>
+                         <h1 id="id1">heading 1</h1>      --> incorrect usage. id should be unique for each element and each occurance too.
+                                                             define onother id for the second accured h1 elemen.
 
 
 

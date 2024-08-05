@@ -1,6 +1,6 @@
   list of tags
 
-**<head> inside tages
+**<head> inside tags
   <title>     --> name for the web page 
   <style>     --> css internal styles(on tag,id,class,group)
   <link>        --> external *CSS files / or other files link to current webpage. 
@@ -12,7 +12,7 @@
 
    *** block level tags  
 
-   <h1> ...<h6>  
+   <h1> ...<h6>   
    <p>  
    <pre> 
    <list> 
@@ -29,8 +29,8 @@
   *FORMATING tags(for text)
   <b>   --bold
   <strong>    --bold
-  <u>         -- underline
   <i>         -- italic
+   <u>         -- underline
   <em>        --italic 
  <small>        --decreses the font than normal
 <mark>              -- highlighted text(in yellow as in ms word) 
@@ -40,15 +40,18 @@
 
 <address>          -- to specify address of author defaut is ITALIC (nothing special)
 
-* no closing tag
+*  self closing attributes(no closing tag)
 <br>     --> for  move to new line
 <hr>     --> for displaying  horizontal line on page 
 <img>     --> to add image 
-<input>   --> in form tag
+<input>   --> in form tag  child element of <form>
+<col>      --> child element if <colgroup>
+<link>    --> to link the external  resource (file.css or icon ect)
+<meta>     -->  to add meta data. charset="UTF-8",lan="eng"(in head tag).
 
 
 * content 
-<p>      -->for paragraph
+<p>      -->for paragraph   --> white space not considered ex: sadik         pasha --> sadik pasha 
 <pre>    -->preformatted text. displays exctaly along with spaces and line breaks.
             ex: used for the poems.
 
@@ -60,7 +63,7 @@
               you can specifi text/image  as link(between <a> and </a> )
       target-- attribute for where to display link dada.
       link to email --> ex: <a href="mailto:someone@example.com">Send email</a> opens the email to send a mail
-      title -- attribute to show the popup message when cursor moves on.
+      *title -- attribute to show the popup message when cursor moves on.
       (bookmark)  link within webpage:
         ex:<h2 id="C4">Chapter 4</h2>            content to be navigated.
            <a href="#C4">Jump to Chapter 4</a>   create a link & use the id with # 
@@ -74,21 +77,38 @@
 <title>    --> name to be displayed on the wrowser
 <link>     -->Defines the relationship between a document and an external resource
             
-
+    *favicon: the icon on  for the web (displayed on the browser before the title )
+      ex: <link   ref="icon"     type="image/png"    src="http://sample.png"> 
+ 
+<meta>       --> to add meta data
+<script>     --> to add javascript 
+     
 *table 
 <table>     -->width(colum),height(row),border (attributes)
+               width=
+               height=
               border=0(with out border)
               border=2 (example) 
+              align=left(default)/center/right
 <caption>   --> name for the table(text)
+<colgroup>    --> used to group the  colums to add a style(must be present after table,caption and before thead,tr, or any)
+  <col> --> child of colgroup. 
+       ex:   <colgroup>
+                <col    span="2"   style="background-color:red">
+                <col    span="3" >           <!-- for  gap colms-->
+                <col    span="2"   style="background-color:green">
+              </colgroup>  
+
 <tr> --> specifies the rows
 <th>   --> table head(used insted of <td> to make a heading of the cell (default bold,center) ) 
-<td>    --> table data(can insert text,image,video,list,table)
+<td>    --> table data(can insert text,image,video,list,table) 
 
 <thead>   --> used to group the table 1 st row as the header(in bold) 
 <tbody>   -->table content   
 <tfoot>    --> last row of the table like Total( used to differenciate with tbody)
          
 *list 
+<list>      --> optional( u can write or ignore)
 <ol>       --type=disk,square,circle,none
 <ul>       --type=1,A,a,i,I
 <li>  
@@ -102,6 +122,12 @@
         --> used to add CSS styles.
         --> allows multiple <div> with different inline css(style attribute.) 
         --> side by side (use css float:left/right  property.)  OR "display:inline" property.
+            
+             ex: <div    style="color:red"> 
+                         <h1> h1 lement inside the div </h1>
+                         <p> paragraph with same style of div </P>
+                  </div>
+         
 
 <span>     --> defines a section in a document. used to add a style in a block element(p,h,div)
             ex: <h2> this is an <span  style="font-size:120px;" > holy book  </span> </h2> 
@@ -126,30 +152,37 @@
 
    <input>   --> type=checkbox,radio,password,text,date,time,email,url,file,image,range,number,submit  
                  **must heve the name attribute to send data to server.
-   <input type="button">       -->
-   <input type="checkbox">     -->
-   <input type="radio">        -->
-   <input type="text">         -->
+   <input type="button">        -->
+   <input type="checkbox">      -->
+   <input type="radio">         -->
+   <input type="text">          -->
 
    <input type="password">      -->
-   <input type="date">         -->
-   <input type="time">         -->
+   <input type="date">          -->
+   <input type="time">          -->
    <input type="email">         -->
-   <input type="url">         -->
-   <input type="file">         -->
+   <input type="url">           -->
+   <input type="file">          -->
    <input type="image">         -->
 
    <input type="range">         -->
-   <input type="number">         -->
+   <input type="number">        -->
   <input type="submit">
 
 
-
-
-  
-
                 
-    
-   
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

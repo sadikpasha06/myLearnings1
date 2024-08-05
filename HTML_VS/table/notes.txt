@@ -2,6 +2,14 @@
               border=0(with out border)
               border=2 (example) 
 <caption>   --> name for the table(text)
+<colgroup>    --> used to group the  colums to add a style(must be present after table,caption and before thead,tr, or any)
+  <col> --> child of colgroup. 
+       ex:   <colgroup>
+                <col    span="2"   style="background-color:red">
+                <col    span="3" >           <!-- for  gap colms-->
+                <col    span="2"   style="background-color:green">
+              </colgroup>  
+
 <tr> --> specifies the rows
 <th>   --> table head(used insted of <td> to make a heading of the cell (default bold,center) ) 
 <td>    --> table data(can insert text,image,video,list,table)
@@ -21,7 +29,9 @@ we can use heading <th> in rows /coloms.
              <tr><th> heading2</th>  <td>data</td> </tr>
       </table>  
 
-**merging cells(span)
+**merging cells(span)    ** colspan,rowspan -->  defined in <th>/<td>  only not in <tr>
+             colpsan --> to merge coloms 
+             rowspan--> to merge rows
   attribute:colspan=2 (2 coloms merged)      used in <th>/<td> tags. 
             rowspan=3 (3 rows merged)       used in <th>/<td> tags.  
                      **specify  in  cell(th,td) u want to span 

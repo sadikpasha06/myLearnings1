@@ -1,0 +1,24 @@
+1)HL7 V2, FHIR(r4), EDI x12.
+2)MIRTH CONNECT 
+3)HIPAA, CMS,HSS,
+4)postgress SQL 
+5)JAVASCRIPT
+6)JAVA
+7)postman 
+8)HTML 5, CSS 3, *****
+9)REACH JS ***** 
+10) AI (github copilet, cody ai, ...)
+
+HRMS-----development
+carecloud --- integaration
+fintrive--- implementation
+
+
+
+------plan----
+1)youTube channnel  --> progarmming
+2)insta page --> 
+
+
+
+

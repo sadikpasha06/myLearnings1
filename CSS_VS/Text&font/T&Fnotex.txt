@@ -1,0 +1,95 @@
+TEXT CSS properties 
+
+1)color:blue      --> color of the text (h1..h6,p,   ect)
+1)background-color:red/blue/...          --> adds background color to  element(text/body/div/table/   ....)
+2)direction:ltr/rtl   -->left-to-right(ltr) is default 
+3)text-align:left/*center/*justfy/right        --> text position on element.
+4)text-decoration-line:*underline/overline/*none/line-through
+5)text-decoration-style:solid/double/dotted/daased... 
+6)text-decoration-color:red/blue/green/yellow/black/white
+    
+    short_hand for text-decoration
+         text-decoration:underline solid green;  (line(required),style,color)
+
+7)text-transform:UPPERCASE/lowercase/Capitalize    --> converts text into specified
+8)letter-spacing:1px/2px     --> space between the letters
+9)word-spacing:1px/2px       --> space between the words of the text.
+
+
+
+
+ ---------------- font-----------
+ 1)font-family:arial ;       --> font family (can give multiple by separting (,) browser will pick based on available)
+ 2)font-size:14px/30px/0.875em;           --> font size(14px/16=0.875em)  -->devide by 16 to get em.
+ 3)font-style:italic/*Normal;        --> font style
+ 4)font-weight:bold/*Normal;         --> font weight
+         
+         short-hand for font
+                font:arial 14px bold italic;      --> font family required 
+
+
+---------------border--------------------
+
+ 1)border-style:solid/double/dotted/dashed/*none/*hidden/..
+ 2)border-color:red/blue/green/yellow/black/white;
+ 3)border-width:1px/2px/3px/...;                         --> width of the border 
+ 4)border-radius:10px/20px/...;  --> rounded corner       -->curved at corners of the radios 
+       
+        shorthand of border
+             border:2px solid blue;     --> style(*required)
+
+          
+NOTE:short hand of any  not need to be in order(accepts jumbled also)
+
+-------margin-------------
+The CSS margin properties are used to create space around elements, outside of any defined borders.
+         
+  1)margin:20px/*auto;       --> sets to all sides (auto will equally )
+
+  1)margin-top:20px;       --> sets marin of 20px on left 
+  2)margin-right:20px;     --> sets marin of 20px on right
+  3)margin-bottom:20px;    --> sets marin of 20px on bottom
+  4)margin-left:20px;      --> sets marin of 20px on left
+
+       shorthand margin
+       margin:10px 20px 30px 40px ;  --> top-10,right-20,bottom-30,left-40.
+
+--------------Padding-------------
+       padding:specifies space between the border and the contenet(text/img/table ect) 
+          ** no border then no padding works 
+
+          padding:10px;       --> sets 10px space between the border and content to all sides.
+
+          1)padding-top:10px;
+          2)padding-right:10px;
+          3)padding-bottom:10px;
+          4)padding-left:10px;
+
+            shorthand for padding
+                padding:10px 20px 30px 40px;  --> top-10,right-20,bottom-30,left-40.
+    
+       note: if width property is used with padding then the padding will be added to width 
+            ex: {width:300px };    --> width for the content
+               {  width:300px
+                padding:50px;}      --> padding will be added to the width of the content.
+                                      then the content width will be 350.(width+padding)
+
+        *use  {box-sizing: border-box};  to avoid issue of above.
+
+--------------------------height & width---------------------
+
+
+
+ 
+
+      
+
+
+
+
+
+
+
+
+
+ 

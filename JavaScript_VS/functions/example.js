@@ -1,0 +1,1 @@
+console.log("sadik pasha ")

@@ -1,4 +1,4 @@
-<linl>   --> Defines the relationship between a document and an external resource
+<link>   --> Defines the relationship between a document and an external resource
       1)favicon    --> icon for the webpage displayes left to the title.
               ex: <head> 
                 <link rel="icon" type="image/x-icon" href="/images/favicon.ico">

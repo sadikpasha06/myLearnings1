@@ -34,7 +34,7 @@ by default you are on the master baranch--  can add new files to branch
   ** having project in remote. want to wark on local.(getting project)  
    1) create  new folder in the local statem.
    2) open the foledr in the command promt(type cmd on the folder path or go terminal cd desktop,cd/desktop/cd foldername) 
-   3) git clone REMOTE_REPOSITORY_URL --> copy it from github.
+   3) ----     git clone REMOTE_REPOSITORY_URL --> copy it from github.
         the project is downloads  in your local foledr.
 
    4) open the local foledr with IDE(vc code,eclips,sts,intellij Idea).
@@ -52,7 +52,22 @@ by default you are on the master baranch--  can add new files to branch
 
 
 
+*** pushing the project/general documents folder and subfolders to github.
 
+--> open the folder you want to upload/pull   onto github in terminal 
+        ex: cd Documents   --> sadik/Documents/cd folder
+--> initialize the git repository in your folder 
+       --     git init 
+
+--> add your files to your git repository(local) 
+     -- git add . ( adds all files and subfolders)   --> insted you can use specific  filenames also
+--> commit the changes 
+       -- git commit -m "Initial commit"           --> <commit message> 
+--> link local repository with remote repository
+      -- git remote add origin <repository-URL>      --> < remote(github) repository url>
+--> push your changes to github 
+     --      git push -u origin master               --> change master  to your working  btanch if you are not on
+                                                        master branch.
 
 
 
