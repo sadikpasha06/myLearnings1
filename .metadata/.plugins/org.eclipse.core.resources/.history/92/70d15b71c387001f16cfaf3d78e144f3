@@ -1,0 +1,29 @@
+package com.example.demo;
+ 
+
+import staedi.PrintNM1Segments;
+import com.example.demo.CopyClass;
+
+import org.springframework.stereotype.Controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import staedi.PrintNM1Segments;
+@RestController
+
+public class ControllerFHIRBundle {
+
+	PrintNM1Segments  object=new PrintNM1Segments();
+	CopyClass c=new CopyClass();
+	 
+	String ss=c.s;
+  
+	@GetMapping("/hello")
+    public String sayHello() {
+        // Return a plain text message
+        return "Hello, this is a simple Spring Boot controller!";
+ 
+	}
+	
+ }

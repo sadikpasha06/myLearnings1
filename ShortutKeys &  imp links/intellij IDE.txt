@@ -1,0 +1,27 @@
+ctrl+/     --> single line comment
+ctrl+/+shift   -->   multi line comment . it gives /* */ only.we need write inside.
+ctrl+f         --> find  TEXT in a file
+ctrl+f+shift   --> find TEXT  across project.
+ctrl+N         --> search class file.
+ctrlt+shift+N   --> search files across project.
+
+ctrl+o         --> ovveride methods of base calss.
+ctrl+i          --> implements methods of interface/abstract class.
+
+right click     -->refactor(rename),generate(setter,getter,constructors)
+
+Alt+insert      --> generate Setters,getters,constructors.(OR) simply right click on the class variable.
+Alt+enter      --> suggession for the highlighted  text error.
+A+shift+enter    --> corrects the highlighted error.
+
+
+
+
+
+
+
+
+
+
+
+

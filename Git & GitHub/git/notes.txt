@@ -1,0 +1,75 @@
+git is a (local) version control system.
+*git is used to create repositories  locally in your syatem. by connecting 
+ to github  we can push code to the remote repository.
+1)collburation
+2)available on different systems (soeasy recovery)
+3)history (can move to the previous version)
+
+ download the git from the official website.--> https://git-scm.com/downloads
+ install git --> no need to change the any configurations.
+ terminal : git --version --> displays the version if git installed.
+            git            --> displays list of commands related to git 
+
+            git config --global --list --> returns global confugurations.
+            git config --global user.name "give username"   --> to config user name for the git(identity)
+            git config --global user.email "give your email "   --> to config user email for the git(identity)
+          
+          use --global if  you want to set the configuratins globally(for all repositories in git).
+          (OR) remove --global to set configuations for the current repository.
+
+ working directory: create a folder for the remote work saving.
+    open this folder  in any IDE (VS CODE).
+    add a new files. to the foledr.
+
+    terminal : open terminal(in vscode ) automatically the folder is opened in commandprompt.
+
+     *git init    --> initializes a repository( a hidden folder&need only once).for  the current folder we are working on.
+                     creates a .git directory(hidden) in the working folder.
+
+     ( to work on  a different project you need to create a another folder and again need to initialize the git(git init))
+       creates a hidden folder to keep track of changes.
+   
+     rm -rf .git      --> uninitialize(delets) .git directory. all git dada of this folder will be lost.
+
+
+     git status    --> shows  on which branch and the commits,staging.
+     git status --short      --> shows status flags.
+                              ??  untarcked(not added to repo)  
+                              A   tracked(added)
+                              M   modefied
+                              D    deleted files.
+      BRANCH :every branch is a copy of  repository. changes are exists only in new branch till merged with main branch. 
+              we create and work on new branch not to effect the original(master) branch code.           
+     git branch       -->shows the list of available branches.
+     git branch NEW_BRANCH_NAME   --> creates a new branch.(but not moved to new branch).
+                creating a new branch means copying the prevoius branch(all the files in the previoe=s branch will be 
+                  available in new branch ** and u can add new filed,modify)
+
+     git branch -d BRANCH_NAME     --> delets the specified branch from git.(only merged changes)
+     git branch  -D  BRANCH_NAME    --> delets branch forcefully.(unmerged)             
+     git add FILE_NAME   --> staging the files(mandatory)(otherwise we cont commit)
+     git ls               --> returns the list of folders in the working directory.
+     
+     tracked(A)    --> files are ADDED to your git repository.only added files are in repository.
+     untracked(U)   --> files that are not added to the git repository.(in working foledr not in  git repository)
+     
+     git add .   (OR) git --all          --> to staging  all files.
+     git commit -m   "message about the commit"        --> saves the new changes in the repository. message should(mandotory). commit once  you done all modefications.
+     git commit -a -m     --> skiping staging area. used when the file is already added.
+
+
+     git log            --> gives the history of commits.(unique sha(hash code),date,author)
+     git rm --cached FILE_NAME --> to delete the file.
+               (or)
+     git rm --cached FILE_PATHH  EX:git rm --cached git.nites.txt 
+     git rm --cached  -f  FILE__PATH    --> to remove forcefully.
+
+
+
+     git add FILENAME --> STAGING (moves from working directory to staging area(git repo))
+     
+    1) git checkout BRANCH_NAME   1,2  both for moving to specified branch 
+    2)  git switch BRANCH_NAME      
+    creating and moving to new branch.
+      git checkout -b NEW_BRANCH_NAME   
+      git switch -c NEW_BRANCH_NAME    

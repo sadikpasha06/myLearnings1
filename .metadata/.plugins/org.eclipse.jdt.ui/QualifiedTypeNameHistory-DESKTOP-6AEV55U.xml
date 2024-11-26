@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="io.xlate.edi.stream.EDIStreamConstants"/>
+    <fullyQualifiedTypeName name="io.xlate.edi.stream.EDIStreamConstants.Delimiters"/>
+    <fullyQualifiedTypeName name="io.xlate.edi.stream.EDIStreamConstants.Standards"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="staedi.PrintNM1Segments"/>
+    <fullyQualifiedTypeName name="com.example.demo.CopyClass"/>
+    <fullyQualifiedTypeName name="org.hl7.fhir.r4.model.Bundle"/>
+</qualifiedTypeNameHistroy>

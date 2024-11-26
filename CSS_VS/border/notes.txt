@@ -1,0 +1,37 @@
+ CSS border  border property.
+
+       border:2px solid;
+                  border_top/border-bottom/border-left/border-right
+       border-color:red; 
+       border-style:dotted/dashed/solid/double/groove/ridge/inset/outset/none/hidden   
+       border-collapse: collapse;
+       border-radius: 10px;
+       border-spacing: 30px;      --> specifies the space between table cells(2 default)
+     
+     
+   *padding     --> space between the border and text(h,p,pre,table)  
+     
+         padding-top: 10px;
+         padding-bottom: 20px;
+         padding-left: 30px;
+         padding-right: 40px;
+
+     *table 
+        selector: nth-child(even/odd)       --zebra background-color(2,4,6 rows/cols )
+        ex: tr:nth-child(even) {
+                              background-color: #D6EEEE;
+                               } 
+
+       *any 
+        selector:  hover  (can on  h,p,li,dt,dd,tr,th,td)                   --background-color only if mouse moves on row/cols
+          ex: tr:hover {  background-color:red;}
+      CSS property
+       float:left/right;           list items in same line(dafault in newline) 
+                                mostly used in navigation menu.
+
+     *list 
+     list-style-type:disc/circle/square/none   <ul>  
+     list-style-type: 1,a,A,i,I                <ol>
+
+       
+ 

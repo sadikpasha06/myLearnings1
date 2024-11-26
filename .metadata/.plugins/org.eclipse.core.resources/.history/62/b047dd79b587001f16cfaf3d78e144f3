@@ -1,0 +1,578 @@
+package com.example.demo;
+
+
+
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+//----------
+import com.imsweb.x12.Element;
+import com.imsweb.x12.Loop;
+import com.imsweb.x12.Segment;
+import com.imsweb.x12.reader.X12Reader;
+import com.imsweb.x12.reader.X12Reader.FileType;
+ 
+//--------------
+ 
+import org.hl7.fhir.r4.model.*;
+import org.hl7.fhir.r4.model.Claim;
+import org.hl7.fhir.r4.model.Claim.DiagnosisComponent;
+import org.hl7.fhir.r4.model.Claim.ItemComponent;
+import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.ContactPoint;
+import org.hl7.fhir.r4.model.DateType;
+import org.hl7.fhir.r4.model.HumanName;
+import org.hl7.fhir.r4.model.Patient;
+import org.hl7.fhir.r4.model.Refer
+import org.springframework.stereotype.Controller;ence;
+import org.hl7.fhir.r4.*;
+ import ca.uhn.fhir.context.FhirContext;
+import org.hl7.fhir.r4.model.Patient;
+import org.hl7.fhir.r4.model.HumanName;
+import org.hl7.fhir.r4.model.Address;
+import org.hl7.fhir.r4.model.ContactPoint;
+import org.hl7.fhir.r4.model.Identifier;
+import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender;
+import org.hl7.fhir.r4.model.DateType;
+ 
+// public class DummyX12parser {
+//
+//     public static void main(String[] args) {
+//    	
+//         FhirContext ctx = FhirContext.forR4();
+//
+//          try {
+//
+//            File f1 = new File("C:\\Users\\SadikPasha\\Documents\\EDIX12_837HealthCareClaim.txt");
+//
+//            // Create X12Reader with ANSI 837 5010 X223 format
+//            X12Reader reader = new X12Reader(FileType.ANSI837_5010_X223, f1);
+//
+//            // Retrieve loops from the X12 file
+//            List<Loop> loops = reader.getLoops();
+//             
+//
+//            // Display the number of loops found (ISA-IEA transactions)
+//            System.out.println("Number of ISA-IEA transactions: " + loops.size());
+//
+//
+//
+//            
+//
+//             for(Loop loop:loops) {
+////               String data = loop.getElement(null, null);
+//               String data1= loop.getId();
+//               
+////                  loop =loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("1000A");
+//
+//                Segment loop2 =loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("1000A").getSegment("NM1");
+//
+//                  Element loop3 =loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("1000A").getSegment("NM1").getElement("NM108");
+//              
+//                  System.out.println(loop2);
+//                  System.out.println(loop3);       
+//                  
+//              String c=    loop2.getElementValue( "NM108");
+//  
+////  --------------------------------------------------------------            
+//           // Create a new Patient resource
+//              Patient patient = new Patient();
+//
+//              // Set patient ID
+//              patient.setId("123");
+//
+//              // Add identifier (e.g., social security number, hospital ID)
+//              patient.addIdentifier()
+//                      .setSystem("http://hospital.smarthealth.org/patients")
+//                      .setValue("00012345");
+//
+//              // Add patient name
+//              HumanName name = patient.addName();
+//              name.setFamily("Doe");
+//              name.addGiven("John").addGiven("Michael");
+//
+//              // Add patient gender
+//              patient.setGender(AdministrativeGender.MALE);
+//
+//              // Set birth date
+//              patient.setBirthDateElement(new DateType("1985-04-12"));
+//
+//              // Add telecom information (contact number)
+//              patient.addTelecom()
+//                      .setSystem(ContactPoint.ContactPointSystem.PHONE)
+
+//                      .setValue("555-1234")
+//                      .setUse(ContactPoint.ContactPointUse.HOME);
+//
+//              // Add address
+//              Address address = patient.addAddress();
+//              address.addLine("123 Elm St");
+//              address.setCity("Gotham");
+//              address.setState("NY");
+//              address.setPostalCode("10001");
+//              address.setCountry("USA");
+//
+//              // Serialize the patient resource to a JSON string
+//              String jsonString = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(patient);
+//
+//              // Print the JSON output
+//              System.out.println(jsonString);
+//              
+////  -----------------------------------------------------------            
+//              // Create a new Claim resource
+//              Claim claim = new Claim();
+//
+//              // Set claim ID
+//              claim.setId("12345");
+//
+//              // Set the patient reference
+//              claim.setPatient(new Reference("Patient/123"));
+//
+//              // Set the type of claim
+//              CodeableConcept typeCode = new CodeableConcept();
+//              typeCode.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/claim-type", "professional", "Professional Claim"));
+//              claim.setType(typeCode);
+//
+//              // Add diagnosis information
+//              DiagnosisComponent diagnosis = new DiagnosisComponent();
+//              diagnosis.setSequence(1);
+//              diagnosis.setDiagnosis(new CodeableConcept().addCoding(
+//                  new Coding("http://hl7.org/fhir/sid/icd-10", "A00", "Cholera")
+//              ));
+//              claim.addDiagnosis(diagnosis);
+//
+//              // Add claim item
+//              ItemComponent item = new ItemComponent();
+//              item.setSequence(1);
+//
+//        
+//              item.setUnitPrice(new Money().setValue(150.00).setCurrency("USD"));
+//              claim.addItem(item);
+//
+//              // Serialize the claim resource to a JSON string
+//              String claimJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(claim);
+//
+//              // Print the JSON output
+//              System.out.println(claimJson);
+//
+//              
+////         --------------------------------------------------------     
+//              
+//              // Create a new Practitioner resource
+//              Practitioner practitioner = new Practitioner();
+//
+//              // Set practitioner ID
+//              practitioner.setId("987");
+//
+//              // Add practitioner name
+//              HumanName name1 = practitioner.addName();
+//              name1.setFamily("Smith");
+//              name1.addGiven("Emily");
+//
+//              // Add telecom information (contact number)
+//              practitioner.addTelecom()
+//                      .setSystem(ContactPoint.ContactPointSystem.PHONE)
+//                      .setValue("555-9876")
+//                      .setUse(ContactPoint.ContactPointUse.WORK);
+//
+//              // Add address
+//              Address address1 = practitioner.addAddress();
+//              address1.addLine("456 Oak St");
+//              address1.setCity("Metropolis");
+//              address1.setState("NY");
+//              address1.setPostalCode("10002");
+//              address1.setCountry("USA");
+//
+//              // Serialize the practitioner resource to a JSON string
+//              String practitionerJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(practitioner);
+//
+//              // Print the JSON output
+//              System.out.println(practitionerJson);
+//              
+//              
+//              
+//              
+//              
+//              
+//                  
+//           }
+//            
+//             
+//             
+//            } catch (IOException e) {
+//            // Handle file I/O exceptions
+//            e.printStackTrace();
+//        }
+//    }
+//}
+ 
+//-----------------
+ 
+public class MappingsClass {
+ 
+    public static void main(String[] args) {
+        FhirContext ctx = FhirContext.forR4();
+ 
+        
+        System.out.println("hello");
+        try {
+
+            File f1 = new File("C:\\Users\\DELL\\Downloads\\EDIX12_837HealthCareClaim-Dummy.txt");
+            
+
+            
+             
+            // Create X12Reader with ANSI 837 5010 X223 format
+            X12Reader reader = new X12Reader(FileType.ANSI837_5010_X223, f1);
+ 
+            // Retrieve loops from the X12 file
+            List<Loop> loops = reader.getLoops();
+ 
+            System.out.println("Number of ISA-IEA transactions: " + loops.size());
+ 
+            for (Loop loop : loops) {
+                // Fetch patient details from Loop 2010BA (Subscriber) and 2000B
+                Loop patientLoop = loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("2000B").getLoop("2010BA");
+                Segment patientNM1 = patientLoop.getSegment("NM1");
+ 
+                // Extract patient name and gender from the X12 message
+                String patientLastName = patientNM1.getElementValue("NM103");
+                String patientFirstName = patientNM1.getElementValue("NM104");
+                String patientGender = patientNM1.getElementValue("NM108");  // Assuming NM108 maps to gender
+                String patientId = patientNM1.getElementValue("NM109");
+ 
+                // Extract patient's birth date (DTP segment in Loop 2010BA)
+                Segment patientDOB = patientLoop.getSegment("DMG");
+                String patientBirthDate = patientDOB.getElementValue("DMG02");
+ 
+                // Create a new Patient resource
+                Patient patient = new Patient();
+                patient.setId(patientId);
+                patient.addIdentifier()
+                        .setSystem("http://hospital.smarthealth.org/patients")
+                        .setValue(patientId);
+ 
+                // Add patient name
+                HumanName name = patient.addName();
+                name.setFamily(patientLastName);
+                name.addGiven(patientFirstName);
+ 
+                // Map patient gender from X12 to FHIR (assuming "M" = Male, "F" = Female)
+                if (patientGender.equals("M")) {
+                    patient.setGender(AdministrativeGender.MALE);
+                } else if (patientGender.equals("F")) {
+                    patient.setGender(AdministrativeGender.FEMALE);
+                }
+ 
+                // Set birth date
+                patient.setBirthDateElement(new DateType(patientBirthDate));
+ 
+                // Serialize and print the Patient resource
+                String patientJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(patient);
+                System.out.println(patientJson);
+ 
+// ---------------------------------------------------------------------------------------
+//                // Fetch claim details from Loop 2300 (Claim Information)
+//                Loop claimLoop = loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("2000B").getLoop("2300");
+//                Segment claimCLM = claimLoop.getSegment("CLM");
+//
+//                // Extract claim information
+//                String claimId = claimCLM.getElementValue("CLM01");
+//                String claimAmount = claimCLM.getElementValue("CLM02");
+//
+//                // Create a new Claim resource
+//                Claim claim = new Claim();
+//                claim.setId(claimId);
+//
+//                // Reference the patient
+//                claim.setPatient(new Reference("Patient/" + patientId));
+//
+//                // Set the claim amount
+//                claim.addItem()
+//                        .setUnitPrice(new Money().setValue(Double.parseDouble(claimAmount)).setCurrency("USD"));
+//
+//                // Serialize and print the Claim resource
+//                String claimJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(claim);
+//                System.out.println(claimJson);
+//
+                
+                
+                
+   //---------------------------------------------------------------------------------------------------
+                // Fetch practitioner details from Loop 2310B (Rendering Physician)
+//                Loop practitionerLoop = loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("2000B");
+//                Segment practitionerNM1 = practitionerLoop.getSegment("NM1");
+//
+//                // Extract practitioner name and identifier
+//                String practitionerLastName = practitionerNM1.getElementValue("NM103");
+//                String practitionerFirstName = practitionerNM1.getElementValue("NM104");
+//                String practitionerNPI = practitionerNM1.getElementValue("NM109");
+//
+                
+ 
+//                // Create a new Practitioner resource
+//                Practitioner practitioner = new Practitioner();
+//                practitioner.setId(practitionerNPI);
+//
+//                // Add practitioner name
+//                HumanName practitionerName = practitioner.addName();
+//                practitionerName.setFamily(practitionerLastName);
+//                practitionerName.addGiven(practitionerFirstName);
+//
+//                // Serialize and print the Practitioner resource
+//                String practitionerJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(practitioner);
+//                System.out.println(practitionerJson);
+//
+//
+                Loop claimLoop = loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("2000B").getLoop("2300");
+                if (claimLoop == null) {
+                    System.out.println("Claim loop not found.");
+                    continue;
+                }
+ 
+                // Extract claim details from CLM segment
+                Segment clmSegment = claimLoop.getSegment("CLM");
+                if (clmSegment != null) {
+                    // Create a new Claim resource
+                    Claim claim = new Claim();
+ 
+                    // Set claim ID (from CLM01)
+                    String claimId = clmSegment.getElementValue("CLM01");
+                    claim.setId(claimId);
+ 
+                    // Set the patient reference (assuming already created Patient resource)
+                    claim.setPatient(new Reference("Patient/123"));
+ 
+                    // Set total claim amount (CLM02)
+                    String totalChargeAmount = clmSegment.getElementValue("CLM02");
+                    claim.setTotal(new Money().setValue(Double.parseDouble(totalChargeAmount)).setCurrency("USD"));
+ 
+                    // Set claim type (professional/institutional based on CLM05-1)
+                    String claimTypeCode = clmSegment.getElementValue("CLM05");
+                    
+                    claimTypeCode= claimTypeCode.substring(0, 2);
+                    System.out.println(claimTypeCode);
+                    
+                    CodeableConcept typeCode = new CodeableConcept();
+                    if (claimTypeCode.equals("11")) {
+                        typeCode.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/claim-type", "professional", "Professional Claim"));
+                    } else if (claimTypeCode.equals("12")) {
+                        typeCode.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/claim-type", "institutional", "Institutional Claim"));
+                    }
+                    claim.setType(typeCode);
+ 
+                    // Extract additional information from related segments (e.g., REF, DTP)
+                    // REF segment (e.g., REF*D9 - Claim Number)
+                    Segment refSegment = claimLoop.getSegment("REF");
+                    if (refSegment != null) {
+                        String claimNumber = refSegment.getElementValue("REF02");
+                        claim.addIdentifier().setSystem("http://example.org/claim-number").setValue(claimNumber);
+                    }
+ 
+                    // DTP segment (e.g., DTP*431 - Date of Service)
+//                    Segment dtpSegment = claimLoop.getSegment("DTP");
+//                    if (dtpSegment != null && "431".equals(dtpSegment.getElementValue("DTP01"))) {
+//                        String dateOfService = dtpSegment.getElementValue("DTP03");
+//                        claim.setBillablePeriod(new Period().setStartElement(new DateType(dateOfService)));
+//                    }
+ 
+                    // Add diagnosis information (e.g., from HI segment)
+                    Segment hiSegment = claimLoop.getSegment("HI");
+                    if (hiSegment != null) {
+                        DiagnosisComponent diagnosis = new DiagnosisComponent();
+                        diagnosis.setSequence(1);  // Assuming first diagnosis
+ 
+                        String diagnosisCode = hiSegment.getElementValue("HI01-2");
+                        diagnosis.setDiagnosis(new CodeableConcept().addCoding(
+                            new Coding("http://hl7.org/fhir/sid/icd-10", diagnosisCode, "Diagnosis")
+                        ));
+ 
+                        claim.addDiagnosis(diagnosis);
+                    }
+ 
+                    // Add service line item (e.g., LX and SV2 segments)
+                    Loop serviceLineLoop = claimLoop.getLoop("2400");
+                    if (serviceLineLoop != null) {
+                        Segment sv2Segment = serviceLineLoop.getSegment("SV2");
+                        if (sv2Segment != null) {
+                            ItemComponent item = new ItemComponent();
+                            item.setSequence(1);  // Assuming first service line
+ 
+                            String procedureCode = sv2Segment.getElementValue("SV202-1");
+                            item.setProductOrService(new CodeableConcept().addCoding(
+                                new Coding("http://hl7.org/fhir/sid/cpt", procedureCode, "Procedure")
+                            ));
+ 
+                            String chargeAmount = sv2Segment.getElementValue("SV203");
+                            item.setUnitPrice(new Money().setValue(Double.parseDouble(chargeAmount)).setCurrency("USD"));
+ 
+                            claim.addItem(item);
+                        }
+                    }
+ 
+                    // Serialize the claim resource to a JSON string
+                    String claimJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(claim);
+ 
+                    // Print the JSON output
+                    System.out.println(claimJson);
+                }
+                
+//      -------------------------------practitioner 
+             // Adding Practitioner Resource
+                Loop practitionerLoop = loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("2310B");
+                Segment practitionerSegment = practitionerLoop.getSegment("NM1");
+
+                if (practitionerSegment != null) {
+                    // Create a new Practitioner resource
+                    Practitioner practitioner = new Practitioner();
+                    String practitionerId = practitionerSegment.getElementValue("NM109");  // NPI or unique ID
+                    practitioner.setId(practitionerId);
+
+                    // Set practitioner name
+                    String practitionerLastName = practitionerSegment.getElementValue("NM103");
+                    String practitionerFirstName = practitionerSegment.getElementValue("NM104");
+                    HumanName practitionerName = practitioner.addName();
+                    practitionerName.setFamily(practitionerLastName);
+                    practitionerName.addGiven(practitionerFirstName);
+
+                    // Add telecom information (if available, use PER segment)
+                    Loop contactLoop = practitionerLoop.getLoop("PER");
+                    if (contactLoop != null) {
+                        Segment contactSegment = contactLoop.getSegment("PER");
+                        if (contactSegment != null) {
+                            practitioner.addTelecom()
+                                    .setSystem(ContactPoint.ContactPointSystem.PHONE)
+                                    .setValue(contactSegment.getElementValue("PER04"))
+                                    .setUse(ContactPoint.ContactPointUse.WORK);
+                        }
+                    }
+
+                    // Serialize and print the Practitioner resource
+                    String practitionerJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(practitioner);
+                    System.out.println(practitionerJson);
+                }
+
+       
+                
+      //coverage ---------------------------------          
+                
+                
+             // Adding Coverage Resource
+                Loop subscriberLoop = loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("2000B").getLoop("2010BA");
+                Segment subscriberSegment = subscriberLoop.getSegment("NM1");
+
+                if (subscriberSegment != null) {
+                    // Create a new Coverage resource
+                    Coverage coverage = new Coverage();
+                    coverage.setId("coverage-123");  // Unique ID for coverage
+
+                    // Set the coverage type (e.g., insurance)
+                    CodeableConcept coverageType = new CodeableConcept();
+                    coverageType.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/coverage-class", "insurance", "Insurance"));
+                    coverage.setType(coverageType);
+
+                    // Set the beneficiary (the patient)
+                    String subscriberId = subscriberSegment.getElementValue("NM109"); // Subscriber ID
+                    coverage.setBeneficiary(new Reference("Patient/" + patientId));
+
+                    // Set coverage period (use DMG or DTP segment for coverage dates if available)
+                    Period coveragePeriod = new Period();
+                    coveragePeriod.setStart(new DateType("2023-01-01").getValue());  // Placeholder
+                    coveragePeriod.setEnd(new DateType("2023-12-31").getValue());    // Placeholder
+                    coverage.setPeriod(coveragePeriod);
+
+                    // Set payer organization (use loop 2010BB for payer information)
+                    Loop payerLoop = loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("2010BB");
+                    if (payerLoop != null) {
+                        Segment payerSegment = payerLoop.getSegment("NM1");
+                        if (payerSegment != null) {
+                            String payerId = payerSegment.getElementValue("NM109");
+                            coverage.setPayor(List.of(new Reference("Organization/" + payerId)));
+                        }
+                    }
+
+                    // Serialize and print the Coverage resource
+                    String coverageJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(coverage);
+                    System.out.println(coverageJson);
+                }
+
+//       ------------------------Encounter-------------------
+                
+                
+             // Adding Encounter Resource
+                Loop encounterLoop = loop.getLoop("GS_LOOP").getLoop("ST_LOOP").getLoop("2300");
+                Segment clmSegmentForEncounter = encounterLoop.getSegment("CLM");
+
+                if (clmSegmentForEncounter != null) {
+                    // Create a new Encounter resource
+                    Encounter encounter = new Encounter();
+                    encounter.setId("encounter-456");  // Unique ID for the encounter
+
+                    // Set patient reference
+                    encounter.setSubject(new Reference("Patient/" + patientId));
+
+                    // Set encounter status (e.g., finished, in-progress)
+                    encounter.setStatus(Encounter.EncounterStatus.FINISHED);
+
+                    // Set encounter type (use CLM05-1 to identify)
+                    String claimTypeCodeForEncounter = clmSegmentForEncounter.getElementValue("CLM05");
+                    CodeableConcept encounterType = new CodeableConcept();
+                    if (claimTypeCodeForEncounter != null && claimTypeCodeForEncounter.startsWith("11")) {
+                        encounterType.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/encounter-type", "ambulatory", "Ambulatory"));
+                    } else if (claimTypeCodeForEncounter.startsWith("12")) {
+                        encounterType.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/encounter-type", "inpatient", "Inpatient"));
+                    }
+                    encounter.setType(List.of(encounterType));
+
+                    // Set encounter period (from DTP segment)
+                    Segment dtpSegmentForEncounter = encounterLoop.getSegment("DTP");
+                    if (dtpSegmentForEncounter != null) {
+                        String encounterStartDate = dtpSegmentForEncounter.getElementValue("DTP03");
+                        Period encounterPeriod = new Period();
+                        encounterPeriod.setStart(new DateType(encounterStartDate).getValue());
+                        encounter.setPeriod(encounterPeriod);
+                    }
+
+                    // Serialize and print the Encounter resource
+                    String encounterJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(encounter);
+                    System.out.println(encounterJson);
+                }
+     
+                
+               
+                
+                
+                
+            }//loop
+                
+ 
+            
+        } catch (IOException e) {
+            // Handle file I/O exceptions
+            e.printStackTrace();
+        }
+    }
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

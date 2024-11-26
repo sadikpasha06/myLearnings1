@@ -1,0 +1,25 @@
+package staedi;
+
+public class Test1 {
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String s="sam";
+	}
+
+}
+
+
+
+
+class Class2{
+	
+	Test1 a=new Test1();
+	
+	String c2=a.s;
+	
+	
+	
+}

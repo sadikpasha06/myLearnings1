@@ -1,0 +1,10 @@
+*list 
+<list>      
+<ol>       --type=1,a,A,i,I      --> default is  "1"
+<ul>       --type=disc/circle/square/none   --> default is disk(filled)
+<li>  
+<dl> description list --type=
+<dt>  description  term     
+<dd> description   data 
+ 
+ horizontal list  --> use css float:  property in <li> ** must use margin and padding border if used float  

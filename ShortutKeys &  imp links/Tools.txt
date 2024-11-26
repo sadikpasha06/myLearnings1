@@ -1,0 +1,10 @@
+commonly used tools 
+
+
+1)Postman  --> API testing 
+
+2)Canvo     --> UI/ designing 
+
+3)Git&gitHub
+
+4)Microsoft Azure --> bug /tickets/repositories 

@@ -1,0 +1,340 @@
+ package com.example.demo;
+ 
+// --------------------printNM1 dummy
+
+
+ import io.xlate.edi.stream.EDIInputFactory;
+ import io.xlate.edi.stream.EDIStreamEvent;
+ import io.xlate.edi.stream.EDIStreamReader;
+ import java.io.FileInputStream;
+ import java.io.InputStream;
+
+
+ //----------------HAPI FHIR PACHAGE imports 
+
+ import org.hl7.fhir.r4.model.*;
+import org.hl7.fhir.r4.model.Claim.DiagnosisComponent;
+ import org.hl7.fhir.r4.model.Claim.ItemComponent;
+import org.hl7.fhir.r4.*;
+  import ca.uhn.fhir.context.FhirContext;
+
+import org.hl7.fhir.r4.model.Enumerations.AdministrativeGender;
+  
+
+ public class CopyClass{
+
+	 String s=" "; 
+     public static void main(String[] args) {
+    	 FhirContext ctx = FhirContext.forR4();
+    	 String s=" ";
+    	 try {
+         	
+             //    resource object creation      	
+         	
+             Patient patient = new Patient();
+             Claim claim = new Claim();
+             Organization organization=new Organization();
+             Practitioner practitioner = new Practitioner();
+             Coverage coverage = new Coverage();
+             Encounter encounter = new Encounter();
+          	
+             // Load the EDI 835 file
+             InputStream ediStream = new FileInputStream("C:\\Users\\DELL\\Downloads\\EDIX12_837HealthCareClaim-Dummy.txt");
+             EDIInputFactory factory = EDIInputFactory.newFactory();
+             EDIStreamReader ediReader = factory.createEDIStreamReader(ediStream);
+
+             // Iterate over segments and print NM1 and N3 segment elements
+              int 	MN1count=0; 
+//            while (ediReader.hasNext()) {
+                 EDIStreamEvent event = ediReader.next();
+//                 if (event == EDIStreamEvent.START_COMPOSITE) {
+//                 	System.out.println("composit found  ");
+//                 	System.out.println("Current state: " + ediReader.getEventType());
+//                 	
+//                 	
+//                     System.out.println(ediReader.getText());
+//                    
+//                 }
+//                  
+                 
+                 if (event == EDIStreamEvent.START_SEGMENT) {
+                 	
+                     String segment = ediReader.getText();
+                    
+//                   -------------------------------------------------------------------------------------------  
+                     
+                                  
+                      // Handle NM1 segment inside the loop
+                    if ("NM1".equals(segment)) {
+                     	
+                 	   MN1count++;
+                     	
+                     	
+                         switch(MN1count) {
+                         case 1:
+                         break;
+                         case 2:
+                         break;
+                         case 3:
+                         break;
+                         case 4:
+                         	int NM1elementIndex4 = 1;
+                         	 HumanName name = patient.addName();
+                         	 String fname="text";
+                         	 String Lname="text2";
+                         	
+                               while(ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                         
+                                   System.out.println("Element " + NM1elementIndex4 + ": " + ediReader.getText());
+                             
+                             
+                                           switch(NM1elementIndex4){
+                         	               case 1: break;
+                         	            	      
+                         		                 
+                         	               case 3:
+                         		                
+                         		                 fname=ediReader.getText();
+                         		                 System.out.println(fname+"     the value of the forst name ");
+                         		                 break;
+                         	               case 4:
+                         	            	   Lname=ediReader.getText();
+                                               break;
+                         	               case 5:   
+                                                 
+                                                 break;
+                           
+                                            default:
+                     	
+                                                System.out.println("NM1 Segment Found:");
+
+                                                 int elementIndex2 = 1;
+                                                while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                         	
+                         
+                                              System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                                              elementIndex2++;
+                                               }
+                             
+                                                break;
+                                           }   
+                         
+                                          NM1elementIndex4++;
+                                          
+                                          name.setFamily(fname);
+                                         name.addGiven(Lname);
+                                         
+                           }
+                               
+                         
+                              
+                               patient.addName(name);  
+                               
+                     }// switch NM1count=4
+                         
+                   } // if NM1
+                    
+                    //  -                     
+               
+                    
+                    
+                     
+                     // Handle N3 segment inside the loop
+                     if ("N3".equals(segment)) {
+                         System.out.println("N3 Segment Found:");
+
+                         int elementIndex2 = 1;
+                         while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                             System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                             elementIndex2++;
+                         }
+                     }
+                     // Handle N4 segment inside the loop
+
+                     if ("N4".equals(segment)) {
+                         System.out.println("N4 Segment Found:");
+
+                         int elementIndex2 = 1;
+                         while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                             System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                             elementIndex2++;
+                         }
+                     }
+                 
+                     // Handle CLM  segment inside the loop
+
+                     
+                     if ("CLM".equals(segment)) {
+                         System.out.println("CLM Segment Found:");
+
+                         int elementIndex2 = 1;
+                         while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                             
+                         	switch(elementIndex2){
+                         	  
+                         	case 1: claim.setIdBase(ediReader.getText());
+                         		  break;
+                         	case 2:  String totalChargeAmount =ediReader.getText();
+
+                             claim.setTotal(new Money().setValue(Double.parseDouble(totalChargeAmount)).setCurrency("USD"));
+
+                         		break;
+                         	case 3: break;
+                         	
+                         	case 5: 
+                         	         String claimTypeCode = ediReader.getText(); 
+                              
+                                      claimTypeCode= claimTypeCode.substring(0, 2);
+                                       CodeableConcept typeCode = new CodeableConcept();
+                                       
+                         		     if (claimTypeCode.equals("11")) {
+                                      typeCode.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/claim-type", "professional", "Professional Claim"));
+                                      } else if (claimTypeCode.equals("12")) {
+                                       typeCode.addCoding(new Coding("http://terminology.hl7.org/CodeSystem/claim-type", "institutional", "Institutional Claim"));
+                                       }
+                                     claim.setType(typeCode);
+                         		
+                         		break;
+                         	
+                         	
+                         	
+                         	}
+                         	
+                         	System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                            
+                         	
+                         	elementIndex2++;
+                             
+                          }
+                     }
+                 
+
+                     // Handle PER  segment inside the loop
+
+                     if ("PER".equals(segment)) {
+                         System.out.println("PER Segment Found:");
+
+                         int elementIndex2 = 1;
+                         while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                             System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                             elementIndex2++;
+                         }
+                     }
+                 
+
+                     // Handle REF  segment inside the loop
+
+                     if ("REF".equals(segment)) {
+                         System.out.println("REF Segment Found:");
+
+                         int elementIndex2 = 1;
+                         while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                             System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                             elementIndex2++;
+                         }
+                     }
+                 
+
+                     // Handle HI  segment inside the loop
+
+                     if ("HI".equals(segment)) {
+                         System.out.println("HI Segment Found:");
+
+                         int elementIndex2 = 1;
+                         while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                         	
+                         	
+                         	 
+                         	switch(elementIndex2){
+                         	  
+                         	case 1: 
+                         		  break;
+                         	case 2:   
+                          
+
+                         		break;
+                         	case 3: break;
+                         	
+                         	case 5:  
+                         		break;
+
+
+                         	}
+                         	
+                            System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                             elementIndex2++;
+                         }
+                     }
+                 
+                      
+                     // Handle BTH  segment inside the loop
+
+                     if ("BTH".equals(segment)) {
+                         System.out.println(" BTH Segment Found:");
+
+                         int elementIndex2 = 1;
+                         while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                             System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                             elementIndex2++;
+                         }
+                     }
+                 
+                 
+                     // Handle  SBR  segment inside the loop
+
+                     if ("SBR".equals(segment)) {
+                         System.out.println("SBR Segment Found:");
+
+                         int elementIndex2 = 1;
+                         while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                             System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                             elementIndex2++;
+                         }
+                     }
+                 
+                     // Handle   DTP  segment inside the loop
+
+                     if ("DTP".equals(segment)) {
+                         System.out.println("DTP Segment Found:");
+
+                         int elementIndex2 = 1;
+                         while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                             System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                             elementIndex2++;
+                         }
+                     }
+                 
+                     // Handle    DMG  segment inside the loop
+
+                     if ("DMG".equals(segment)) {
+                         System.out.println("DMG Segment Found:");
+
+                         int elementIndex2 = 1;
+                         while (ediReader.hasNext() && ediReader.next() == EDIStreamEvent.ELEMENT_DATA) {
+                             System.out.println("Element " + elementIndex2 + ": " + ediReader.getText());
+                             elementIndex2++;
+                         }
+                     }
+                 
+              
+            }}// base 
+           
+            
+             // printing fhir resources
+             
+            String patientJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(patient);
+            System.out.println(patientJson);
+            
+            
+            String claimJson = ctx.newJsonParser().setPrettyPrint(true).encodeResourceToString(claim );
+            System.out.println(claimJson);
+                   } //try
+          catch (Exception e) {
+             e.printStackTrace();
+         }
+     
+ }}//class
+
+
+
+

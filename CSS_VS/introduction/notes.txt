@@ -1,0 +1,202 @@
+CSS --> cascadig Style Sheets 
+    --> CSS is a language that describes the presentation of a document written in HTML. 
+    
+    types of css 
+    1) inline CSS 
+          --> defined in an element using the style attribute.
+          --> applicable to that element only 
+            ex: <p style="property:value ;property:value " > content </p> 
+
+    2)internal CSS 
+          --> defined in the <head> section of the document using the <Style> tag 
+          -->applicable to the defined document(webpage)only. 
+          -->helpful in defining the resualble elements. saves time& reusesable.
+            ex: <head>
+                 <style> 
+                    p { style:property;
+                        stype:proverty;
+                      } 
+                 </style>
+                 </head> 
+
+    3)external CSS 
+        -->a separate css file with.linked with the <link> element on the <head> section.
+        --> helpful in  modifying as  insted of changing all file you can  easily change the ..css fule. 
+              ex:  <head> 
+                    <link    rel="stylesheet" href="filename.css">
+                    </head> 
+
+                  
+ 
+selectors:  CSS can be added based on the element name,class,id or it's combination only.
+
+            1)simple selectors   --> by using the name ,class(.) or  id(#).
+                                  1)name ex:   p{ property:value;}       --> applicable to all p elements 
+
+                                  2)class ex: .class-name{ property:value;}    --> applicable to all elements with this class name 
+                                              element.class-name{property:value;} --> applicable to only specified element with this class-name
+                                          ex: p.cls1{color:red;}   -->  <p class="cls1"> content</p>
+                                           note: a single element can use multiple class, just give space in class names
+                                          ex:   .cls1{property:value;}
+                                                .cls2{property:value;}
+                                                <p class="cls1 cls2"> content </p>
+
+                                  3)id        --> should be unique and applicable to only one element even of same type.
+                                            ex:  #id-name {property:value;}     -->   <p  id="id-name">content</p>
+                                                element#id-name {property:value;} --> can specify with elemet name but meaningless as id shoubld be unique for each elemet. 
+
+           
+             
+            2)combinator selectors(space,>,+,~): relationship between the  selectors (elements/pseudo class selectors) 
+                                    --> combinatio on element name  selectors only.
+                                   ****1)descendant selector (space)  --> applies to all inside elements 
+                                           ex:p h1{property:value;}    <p>
+                                                                           <h1>    applicable
+                                                                               <pre>   <h1>   applicable
+                                                                               </pre>
+                                                                           </h1>
+                                                                        </p>
+                                                                        <h1>   not applicable
+
+                                  ***** 2)child selector (>)           --> applies to only child elements(not great child ect)
+                                          ex:p > h1{ property:value;}    <p>
+                                                                            <h1>    applicable(child)
+                                                                            <pre>   <h1>  not applicable(great child)
+                                                                            <h1>     applicable   
+                                                                         </p> 
+                                                                        
+                                       3)adjacent sibling selector (+)  --> only immediate next sybling elemet only (not all sybling elements)
+                                                                        <p></p> 
+                                          ex: p + h1{ property:value;}  <h1> </h1>   applicable
+                                                                        <h1> </h1>  not  applicable   (not immediate sybling)
+                                                                         
+                                                                        
+
+                                       4)general sibling selector (~)   --> all next sybling elements
+                                            ex:  p ~ h1{ property:value;}   <p></p> 
+                                                                            <h1> </h1>   applicable
+                                                                            <h1> </h1>   applicable
+                                                                         
+           
+           3)pseudo-element selectors(::) -->by using the pseudo-element name (mostly text base css prorerties)
+                                   
+                                    ::after	      p::after	      Insert content after every <p> element ex: p::after{content:check it; color:red;}
+                                    ::before	      h2::before	      Insert content before every <h2> element ex: h2::after{content:check it; color:red;}
+                                    ::first-letter	p::first-letter	Selects the first letter of every <p> element
+                                    ::first-line	p::first-line	Selects the first line of every <p> element
+                                    ::marker	      ::marker	      Selects the markers of list items
+                                    ::selection	      p::selection	Selects the portion of an element that is selected by a user
+          
+            4)pseudo-class selectors(:)  -->by using the pseudo-class name
+                        
+                          1) :hover{property:value;}    --> applicable  to all elements when mouse curser places on element.
+                            p:hover{property:value;(p css properties)}    --> applicable to anchor <a> tag only.
+
+                          
+                          2)a:visited{ a Css properties }  -->used on  only <a> tag and  applicable  when link visited
+                                  ex: a:visited{color:red;}  --> its default  link color  changes from blue to red after visiting 
+                            
+
+                            <input> below applicable only  to element <input>
+
+                          3)input:focus{background-color:red;}    -->  applicable when the user eneter data on it 
+                                   ex: input[type]:focus{with:250px;}   --> changes the width when the user enter data on input text field 
+                          4)input:disabled{ input css properties }      --> applicacable to input elements that are disabled state
+                          5)input:enabled{ input css properties }      --> applicacable to input elements that are enabled(default all are enabled so no use)
+                          
+                          6)input:checked{ input css properties }      --> applicable to radio buttons and checkboxes that are checked 
+                          7)input:unchecked{ input css properties }      --> applicable to radio buttons and checkboxes that are unchecked(by defauld all are unchecked so no use )
+
+                          8)input:invalid{input css }               --> applicable to invalid input fields(like email,number,file ect)
+                          9)input:valid{input css }               --> applicable to valid input fields(like email,number,file ect)
+
+                          10) input:optional{input css }           --> applicable to input elements with optional attribute.
+                          11) input:required{input css }           --> applicable to input elements with required attribute.
+                   
+                  
+                          12)input:in-range{css aprperties}       --> app;licable if the input in the specified range(with min,max attribute type inputs like number,date ect)
+                          13)input:in-range{css aprperties}       --> app;licable if the input out of  the specified range(with min,max attribute type inputs like number,date ect)
+ 
+                  
+                             note: use the attribute selctor in conjuction to specify the exact input element 
+                                ex: input[type="text"]:focus{color:blue;} 
+
+                          14) :not(element){css}     --> applicable to all elements except the specifies 
+                          ex:  :not(p){colr:blue;}   --> applies to all elements extecpt the <p> element
+
+                          15) :nth-child(n)            --> applicable  to N th child  of the element.
+                          16) :nth-last-child(n)       --> applicable to Nth child from the last of the element.
+                                  ex:    :nth-child(3){color:red;} -->
+
+                                          <h2>
+                                              <p> not applicable
+                                              <p> not applicable 
+                                              <p> applicable
+                                          <h2> 
+                           Note: using html class with pseudo classes.
+
+                                ex:   p.cls:hover{ color:red;}   --> cls is the html class(.) and  :hover is the pseudo class
+                                            
+                                            <p>          --> not applicable of hover css property. 
+                                            <p class="cls"> applicable </p>   --> hover applicable
+
+                          NOTE: combinator selectors with pseudo class 
+
+                              ex: div p:hover{color:red;}   --> applicable to all p elements  only inside the <div> element.
+                              ex: div>p:hover{color:red;}   --> applicable to all p elements  those are child elements of <div>
+
+                         NOTE:      difficult one  
+
+                                  div input[type="email"].cls:invalid{boarder:2px solod red;} 
+                                        involved selectors 
+                                        1)combinator (div input)   --> desendent selector 
+                                        2)attribute selector([type="email"])  
+                                        3)simple class selector (input[type="text"].cls)
+                                        4)pseudo class selector (.cls:invalid)
+
+
+
+           5)attribute selectors[]  -->by using the attribute(class,id,type,name,value ect) name and value
+              (not used mostly)
+               
+                     1) element[attribute] {property:value;} -->selects element based on the attribute on selector 
+                          ex:p[title]  {p element css properties} / img[alt] {image css properties}    
+                       [attribute] {property:value;} -->selects  all elements with the specified attribute.
+                        
+                ***  2)element [attribute="value"]   --> selects only the specified element with exact attribute and value.
+                            ex:ol[type="A"]{ol css properties}         -->  selects only ol list with type attribute value of "A" only. 
+                     3)element[Attribute^="value"] {css}  --> selects only attribue value that starts with the specified value   
+                             ex:input[name^="to"]{input css}  --> selects only if the attribute value  starts with to
+                      
+                      
+                          
+
+
+           6)group selectors(,)--> more than one selectors(element name,class,id,or any other selector like pseudo element/class selectors)  separated by (,) symbol 
+                                    ex: p,.h,#id2, a:hover, li a:visited,p[title]{css property}
+                                    ex:  p,h1{ property:value;}     --> different elements 
+                                    ex:  p.class-name,h1#id-name{ property:value;}  --> 
+                                    ex:  p.class-name,#id-name{ property:value;}
+                                    ex:  
+
+            
+
+
+
+            7)universal selector(*)   -->by using * symbol 
+                                  --> applicable to all elements on the document (ex: body,h,p,pre,table,..ect)
+                                  ex:  *{ property:value;} 
+
+        -----------------      -----------------     -----------------      -----------------           
+      
+    
+
+
+                           Text CSS properties 
+     
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+package staedi;
+
+public class Test1 {
+
+	String s="sam";
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String s="samsundar";
+		
+		Class2 ob2 =new Class2();
+		System.out.println(ob2.c2);
+		
+	}
+
+}
+
+
+
+
+class Class2{
+	
+	Test1 a=new Test1();
+	
+	String c2=a.s;
+	
+	
+	
+	
+}
